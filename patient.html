@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="assets/css/patient.css">
+<link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
+
+<head>
+
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
+        style="background-color: rgb(125, 125, 172);">
+        <h1>Patient</h1>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link  " href=""
+                        onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href=""
+                        onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href=""
+                        onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Nurse</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');"
+                        target="" rel="">Patient</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="abcd" aria-label="Recipient's username"
+                aria-describedby="basic-addon2">
+        </div>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">PATIENT ID:</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">AGE</th>
+                    <th scope="col">SEX</th>
+                    <th scope="col">BLOOD GROUP</th>
+                    <th scope="col">UPDATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

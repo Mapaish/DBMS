@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/doctor.css">
+</head>
+
+<body>
+    <!--1st Section-->
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        <h1>Doctor</h1>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link " href="" onclick="">Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="" onclick="">Nurse</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="" onclick="" target="" rel="">Patient</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!--2nd Section-->
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Min</span>
+            <input type="text" class="form-control w-25" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            <button type="button" class="btn btn-dark">Dark</button>
+            <span class="input-group-text" id="inputGroup-sizing-sm">Max</span>
+            <input type="text" class="form-control w-25" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            <button type="button" class="btn btn-dark">Dark</button>
+        </div>
+    </div>
+    <!--3rd Section-->
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID:</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">AGE</th>
+                    <th scope="col">SEX</th>
+                    <th scope="col">SPECIALIZATION</th>
+                    <th scope="col">TYPE</th>
+                    <th scope="col">UPDATE</th>
+                    <th scope="col">DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>M</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Launch demo modal
+                        </button></td>
+                    <td><button type="button" class="btn btn-danger">DELETE</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>M</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                    <td><button type="button" class="btn btn-danger">DELETE</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>M</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                    <td><button type="button" class="btn btn-danger">DELETE</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+</body>
+
+</html>
