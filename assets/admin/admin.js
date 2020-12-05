@@ -58,35 +58,6 @@ $(function () {
         $('#formModalBody').html(html); 
     });
 
-    // Add Nurse
-    $('#addNurse').on('click', function (event) {
-        $('#formModalLabel').text('Add Nurse');
-         var html = `<form>
-         <div class="form-group">
-             <label>NAME:</label>
-             <input type="text" class="form-control" id="name">
-         </div>
-         <div class="form-group">
-             <label>AGE:</label>
-             <input type="number" class="form-control col-sm-4" id="age">
-         </div>
-         <div class="form-group">
-             <label>SALARY:</label>
-             <input type="number" class="form-control col-sm-4" id="salary">
-         </div>
-         <div class="form-row">
-             <div class="form-group col-md-6">
-                 <label for="inputEmail4">EMAIL:</label>
-                 <input type="email" class="form-control" id="email">
-             </div>
-             <div class="form-group">
-                 <label>PHONE NUMBER:</label>
-                 <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-             </div>
-     </form>`;
-        $('#formModalBody').html(html); 
-    });
-
     // Add Patient
     $('#addPatient').on('click', function (event) {
         $('#formModalLabel').text('Add Patient');
@@ -201,40 +172,9 @@ function updateDoctor(id) {
  </form>`;
     $('#formModalBody').html(html); 
 };
+
 // Delete Doctor
 function deleteDoctor(id) {
-};
-
-// Update Nurse
-function updateNurse(id) {
-    $('#formModalLabel').text('Update Nurse');
-    var html = `<form>
-    <div class="form-group">
-        <label>NAME:</label>
-        <input type="text" class="form-control" id="name">
-    </div>
-    <div class="form-group">
-        <label>AGE:</label>
-        <input type="number" class="form-control col-sm-4" id="age">
-    </div>
-    <div class="form-group">
-        <label>SALARY:</label>
-        <input type="number" class="form-control col-sm-4" id="salary">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">EMAIL:</label>
-            <input type="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <label>PHONE NUMBER:</label>
-            <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-        </div>
-</form>`;
-    $('#formModalBody').html(html);
-};
-// Delete Nurse
-function deleteNurse(id) {
 };
 
 // Update Patient
@@ -261,6 +201,7 @@ function updatePatient(id) {
 </form>`;
     $('#formModalBody').html(html);
 };
+
 // Delete Patient
 function deletePatient(id) {
 };

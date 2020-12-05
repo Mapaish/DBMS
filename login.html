@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>Mapaish Hospital</title>
+	<link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/login.css">
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row no-gutter">
+			<!--Left Section-->
+			<div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+			<!--Right Section-->
+			<div class="col-md-8 col-lg-6">
+				<div class="login d-flex align-items-center py-5">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-9 col-lg-8 mx-auto">
+								<h3 class="title mb-4">
+									<center>MAPAISH HOSPITAL</center>
+								</h3>
+								<div class="tab-content">
+									<!--Login Form-->
+									<form id="login">
+										<h3 class="login-heading mb-4">
+											<center>LOGIN</center>
+										</h3>
+										<div class="form-group">
+											<label for="type">TYPE</label>
+											<select class="custom-select">
+												<option value="ft" selected>Type</option>
+												<option value="ft">Full-time</option>
+												<option value="pt">Part-time</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="emailid">EMAIL</label>
+											<input type="email" id="loginEmail" placeholder="Email" class="form-control"
+												required autofocus />
+											<small class="text-danger" id="loginEmailError"></small>
+											<input type="hidden" id="loginEmailValid" value="0" />
+										</div>
+										<div class="form-group">
+											<label for="password">PASSWORD</label>
+											<input type="password" id="loginPassword" placeholder="Password"
+												class="form-control" required autofocus>
+											<small class="text-danger" id="loginPasswordError"></small>
+											<input type="hidden" id="loginPasswordValid" value="0" />
+										</div><br>
+										<div>
+											<button class="btn btn-danger btn-lg btn-login btn-block" id="loginSubmit"
+												type="submit">Login
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/login/login.js"></script>
+</body>
+
+</html>

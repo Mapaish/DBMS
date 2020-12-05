@@ -1,0 +1,57 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: 0.75rem;
+}
+
+body {
+    background-color: #001730;
+}
+
+.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('https://cdn.pixabay.com/photo/2020/08/03/09/43/medical-5459654_1280.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-heading{
+    color: #e95f6d;
+    font-weight: 300;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+
+.title{
+    color: #ffffff;
+}
+
+.btn-login {
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+    color: #fff;
+}
+
+.inactive {
+	background-color:#e95f6d;
+}
+
+button:focus {
+    outline: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.form-group>label {
+    color:white;
+}
+
+.is-invalid, label {
+	margin-bottom: 0rem;
+}
