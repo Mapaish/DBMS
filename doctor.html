@@ -4,51 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="assets/css/doctor.css">
 </head>
 
 <body>
+
     <!--1st Section-->
-    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
+        style="background-color: rgb(125, 125, 172);">
+
         <h1>Doctor</h1>
         <div class="navbar-nav-scroll">
             <ul class="navbar-nav bd-navbar-nav flex-row">
                 <li class="nav-item">
-                    <a class="nav-link " href="" onclick="">Doctor</a>
+                    <a class="nav-link active" href="" onclick="">Doctor</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="" onclick="">Nurse</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="" onclick="" target="" rel="">Patient</a>
                 </li>
             </ul>
         </div>
+
     </header>
     <!--2nd Section-->
     <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Min</span>
-            <input type="text" class="form-control w-25" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-            <button type="button" class="btn btn-dark">Dark</button>
-            <span class="input-group-text" id="inputGroup-sizing-sm">Max</span>
-            <input type="text" class="form-control w-25" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-            <button type="button" class="btn btn-dark">Dark</button>
+
+        <h1>Hello, world!</h1>
+        <div class="row">
+            <input type="text" class="form-control col-sm-1" placeholder="Min">
+            <input type="text" class="form-control col-sm-1" placeholder="Max">
+
+            <select class="custom-select col-sm-2">
+                <option value="ft" selected>Full-time</option>
+                <option value="pt">Part-time</option>
+            </select>
         </div>
+        <button type="button" class="btn btn-success float-right" id="addDoctor" data-toggle="modal"
+            data-target="#formModal">ADD</button>
+
     </div>
     <!--3rd Section-->
     <div class="container-fluid">
+
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">ID:</th>
+                    <th>ID:</th>
                     <th scope="col">NAME</th>
                     <th scope="col">AGE</th>
                     <th scope="col">SEX</th>
+                    <th scope="col">EMAIL</th>
                     <th scope="col">SPECIALIZATION</th>
-                    <th scope="col">TYPE</th>
                     <th scope="col">UPDATE</th>
                     <th scope="col">DELETE</th>
                 </tr>
@@ -57,40 +66,68 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
-                    <td>Otto</td>
+                    <td>20</td>
                     <td>M</td>
                     <td>Otto</td>
                     <td>Otto</td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Launch demo modal
-                        </button></td>
+
+                    <td><button type="button" class="btn btn-warning" name="" data-toggle="modal"
+                            data-target="#formModal">UPDATE</button></td>
                     <td><button type="button" class="btn btn-danger">DELETE</button></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
-                    <td>Thornton</td>
+                    <td>20</td>
                     <td>M</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                    <td>ishwar.palav@gmail.com</td>
+                    <td>Physician</td>
+
+                    <td><button type="button" class="btn btn-warning" name="" data-toggle="modal"
+                            data-target="#formModal">UPDATE</button></td>
                     <td><button type="button" class="btn btn-danger">DELETE</button></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Larry</td>
-                    <td>the Bird</td>
+                    <td>20</td>
                     <td>M</td>
                     <td>Otto</td>
                     <td>Otto</td>
-                    <td><button type="button" class="btn btn-success">UPDATE</button></td>
+                    <td><button type="button" class="btn btn-warning" name="" data-toggle="modal"
+                            data-target="#formModal">UPDATE</button></td>
                     <td><button type="button" class="btn btn-danger">DELETE</button></td>
                 </tr>
             </tbody>
         </table>
 
     </div>
-    
+
+    <!-- Modal -->
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="formModalBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/admin/admin.js"></script>
+
 </body>
 
 </html>
