@@ -3,8 +3,39 @@
 include("../../db.php");
 
 try {
-	$loadDoctorSQL = 'SELECT * FROM `doctor`';
-	$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
+	$minSal = '';
+	$maxSal = '';
+	$doctorType = '%%';
+	if(isset($_POST['minSal'])) {
+		$minSal = $_POST['minSal'];
+		$maxSal = $_POST['maxSal'];
+		$doctorType = '%'.$_POST['doctorType'].'%';
+	}
+	if($minSal && $maxSal) {
+		$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `Salary` BETWEEN :minSal AND :maxSal AND type LIKE :doctorType';
+		$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
+		$loadDoctorSTMT->bindParam(':minSal', $minSal);
+		$loadDoctorSTMT->bindParam(':maxSal', $maxSal);
+		$loadDoctorSTMT->bindParam(':doctorType', $doctorType);
+	} else if ($minSal) {
+		$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `Salary`
+			BETWEEN :minSal AND (SELECT MAX(Salary) FROM `doctor`) AND type LIKE :doctorType';
+		$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
+		$loadDoctorSTMT->bindParam(':minSal', $minSal);
+		$loadDoctorSTMT->bindParam(':doctorType', $doctorType);
+	} else if ($maxSal) {
+		$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `Salary`
+			BETWEEN (SELECT MIN(Salary) FROM `doctor`) AND :maxSal AND type LIKE :doctorType';
+		$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
+		$loadDoctorSTMT->bindParam(':maxSal', $maxSal);
+		$loadDoctorSTMT->bindParam(':doctorType', $doctorType);
+	} else {
+		$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `Salary`
+			BETWEEN (SELECT MIN(Salary) FROM `doctor`) AND (SELECT MAX(Salary) FROM `doctor`) AND type LIKE :doctorType';
+		$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
+		$loadDoctorSTMT->bindParam(':doctorType', $doctorType);
+	}
+
 	$loadDoctorSTMT->execute();
 	while ($row = $loadDoctorSTMT->fetchObject()) {
 		$doctor["doctor_ID"] = $row->doctor_ID;

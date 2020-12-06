@@ -3,8 +3,13 @@
 include("../../db.php");
 
 try {
-	$loadAppointmentSQL = 'SELECT * FROM `assigned_to`';
+	$treatment_type = '%%';
+	if(isset($_POST['treatment_type'])) {
+		$treatment_type = '%'.$_POST['treatment_type'].'%';
+	}
+	$loadAppointmentSQL = 'SELECT * FROM `assigned_to` WHERE LOWER(`treatment_type`) LIKE LOWER(:treatment_type)';
 	$loadAppointmentSTMT = $conn->prepare($loadAppointmentSQL);
+	$loadAppointmentSTMT->bindParam(':treatment_type', $treatment_type);
 	$loadAppointmentSTMT->execute();
 	while ($row = $loadAppointmentSTMT->fetchObject()) {
 		$patient["treatment_ID"] = $row->treatment_ID;
