@@ -1,207 +1,192 @@
 $(function () {
-    // Add Doctor
-    $('#addDoctor').on('click', function (event) {
-        $('#formModalLabel').text('Add Doctor');
-         var html = `<form>
-                        <div class="form-group">
-                            <label>NAME:</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
+	setTimeout(function () {
+		$("#doctorTab").trigger('click');
+	}, 10);
 
-                        <div class="form-group">
-                            <label>AGE:</label>
-                            <input type="number" class="form-control col-sm-4" id="age">
-                        </div>
+	// Doctor
+	$('#doctorTab').on('click', function () {
+		// Jumbotron
+		var jumbotron = `
+		<h1>Doctor</h1>
+		<div class="row">
+			<input type="text" class="form-control col-sm-1" placeholder="Min">
+			<input type="text" class="form-control col-sm-1" placeholder="Max">
 
-                        <div class="form-row align-items-center">
-                            <div class="col-auto my-1">
-                                <label class="mr-sm-5" for="inlineFormCustomSelect">GENDER:</label>
-                                <select class="custom-select mr-sm-5" id="gender">
-                                    <option selected></option>
-                                    <option value="1">M</option>
-                                    <option value="2">F</option>
-                                    <option value="3">Other</option>
-                                </select>
-                            </div>
-                        </div>
+			<select class="custom-select col-sm-2">
+				<option value="ft" selected>Full-time</option>
+				<option value="pt">Part-time</option>
+			</select>
+		</div>
+		<button type="button" class="btn btn-success float-right" id="addDoctorModal" data-toggle="modal"
+			data-target="#formModal">ADD</button>`;
+		$('#jumbotron').html(jumbotron);
 
-                        <div class="form-group">
-                            <label>SPECIALIZATION:</label>
-                            <input type="text" class="form-control col-sm-7" id="specialization">
-                        </div>
+		$.ajax({
+			method: "POST",
+			url: 'backend/admin/doctor/loadDoctor.php',
+			success: function (data) {
+				// Table
+				var table = `
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">NAME</th>
+							<th scope="col">DOB</th>
+							<th scope="col">GENDER</th>
+							<th scope="col">SALARY</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">MOBILE</th>
+							<th scope="col">SPECIALISATION</th>
+							<th scope="col">TYPE</th>
+							<th scope="col">UPDATE</th>
+							<th scope="col">DELETE</th>
+						</tr>
+					</thead>
+					<tbody>`;
+				if (data) {
+					data = JSON.parse(data);
+					data.forEach(element => {
+						table += `
+						<tr>
+							<th scope="row">`+ element.doctor_ID + `</th>
+							<td>`+ element.name + `</td>
+							<td>`+ element.dob + `</td>
+							<th>`+ element.gender + `</th>
+							<td>`+ element.salary + `</td>
+							<th>`+ element.email + `</th>
+							<td>`+ element.mobile + `</td>
+							<th>`+ element.specialisation + `</th>
+							<td>`+ element.type + `</td>
+							<td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formModal"
+								onclick="updateDoctorModal(`+ element.doctor_ID + `)">UPDATE</button></td>
+							<td><button type="button" class="btn btn-danger"
+								onclick="deleteDoctor(`+ element.doctor_ID + `)">DELETE</button></td>
+						</tr>`;
+					});
+				}
+				table += `</tbody>
+				</table>`;
+				$('#table').html(table);
+			}
+		});
+	});
 
-                        <div class="form-row align-items-center">
-                            <div class="col-auto my-1">
-                                <label class="mr-sm-5" for="inlineFormCustomSelect">TYPE:</label>
-                                <select class="custom-select mr-sm-5" id="type">
-                                    <option selected></option>
-                                    <option value="1">Full time</option>
-                                    <option value="2">Part time</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>SALARY:</label>
-                            <input type="number" class="form-control col-sm-4" id="salary">
-                        </div>
+	// Patient
+	$('#patientTab').on('click', function () {
+		// Jumbotron
+		var jumbotron = `
+		<h1>Patient</h1>
+        <button type="button" class="btn btn-success float-right" id="addPatientModal" data-toggle="modal"
+            data-target="#formModal">ADD</button>`;
+		$('#jumbotron').html(jumbotron);
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">EMAIL:</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label>PHONE NUMBER:</label>
-                                <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-                            </div>
-                    </form>`;
-        $('#formModalBody').html(html); 
-    });
+		$.ajax({
+			method: "POST",
+			url: 'backend/admin/patient/loadPatient.php',
+			success: function (data) {
+				// Table
+				var table = `
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">NAME</th>
+							<th scope="col">DOB</th>
+							<th scope="col">GENDER</th>
+							<th scope="col">BLOOD GROUP</th>
+							<th scope="col">EMAIL</th>
+							<th scope="col">MOBILE</th>
+							<th scope="col">UPDATE</th>
+							<th scope="col">DELETE</th>
+						</tr>
+					</thead>
+					<tbody>`;
+				if (data) {
+					data = JSON.parse(data);
+					data.forEach(element => {
+						table += `
+						<tr>
+							<th scope="row">`+ element.patient_ID + `</th>
+							<td>`+ element.name + `</td>
+							<td>`+ element.dob + `</td>
+							<th>`+ element.gender + `</th>
+							<td>`+ element.blood_group + `</td>
+							<th>`+ element.email + `</th>
+							<td>`+ element.mobile + `</td>
+							<td><button type="button" class="btn btn-warning" onclick="updatePatientModal(`+ element.patient_ID + `)"
+								data-toggle="modal" data-target="#formModal">UPDATE</button></td>
+							<td><button type="button" class="btn btn-danger"
+								onclick="deletePatient(`+ element.patient_ID + `)">DELETE</button></td>
+						</tr>`;
+					})
+				}
+				table += `</tbody>
+				</table>`;
+				$('#table').html(table);
+			}
+		});
+	});
 
-    // Add Patient
-    $('#addPatient').on('click', function (event) {
-        $('#formModalLabel').text('Add Patient');
-        var html = `       <form>
-        <div class="form-group">
-            <label>NAME:</label>
-            <input type="text" class="form-control" id="name">
+	// Appointment
+	$('#appointmentTab').on('click', function () {
+		// Jumbotron
+		var jumbotron = `
+		<h1>Appointment</h1>
+        <div class="row">
+            <input type="text" class="form-control col-sm-4" placeholder="">
+            <button type="button" class="btn btn-success float-right">Search</button>
         </div>
-        <div class="form-group">
-            <label>AGE:</label>
-            <input type="number" class="form-control" id="age">
-        </div>
+        <button type="button" class="btn btn-success float-right" id="addAppointmentModal" data-toggle="modal"
+            data-target="#formModal">ADD</button>`;
+		$('#jumbotron').html(jumbotron);
 
-        <div class="form-row align-items-center">
-            <div class="col-auto my-1">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">GENDER:</label>
-                <select class="custom-select mr-sm-2" id="gender">
-                    <option selected></option>
-                    <option value="1">male</option>
-                    <option value="2">female</option>
-                    <option value="3">other</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-row align-items-center">
-            <div class="col-auto my-1">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">BLOOD TYPE:</label>
-                <select class="custom-select mr-sm-2" id="bloodtype">
-
-                    <option selected></option>
-                    <option value="1">O+</option>
-                    <option value="2">O-</option>
-                    <option value="3">A+</option>
-                    <option value="4">A-</option>
-                    <option value="5">B+</option>
-                    <option value="6">B-</option>
-                    <option value="7">AB+</option>
-                    <option value="8">AB-</option>
-
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">EMAIL:</label>
-                <input type="email" class="form-control" id="email">
-            </div>
-            <div class="form-group">
-                <label>PHONE NUMBER:</label>
-                <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-            </div>
-    </form>`;
-        $('#formModalBody').html(html);
-    });
-});
-
-// Update Doctor
-function updateDoctor(id) {
-    $('#formModalLabel').text('Update Doctor');
-     var html = `<form>
-     <div class="form-group">
-         <label>NAME:</label>
-         <input type="text" class="form-control" id="name">
-     </div>
-     <div class="form-group">
-         <label>AGE:</label>
-         <input type="number" class="form-control" id="age">
-     </div>
-
-     <div class="form-row align-items-center">
-         <div class="col-auto my-1">
-             <label class="mr-sm-2" for="inlineFormCustomSelect">GENDER:</label>
-             <select class="custom-select mr-sm-2" id="gender">
-                 <option selected></option>
-                 <option value="1">male</option>
-                 <option value="2">female</option>
-                 <option value="3">other</option>
-             </select>
-         </div>
-     </div>
-     <div class="form-group">
-         <label>SPECIALIZATION:</label>
-         <input type="text" class="form-control" id="specialization">
-     </div>
-     <div class="form-group">
-         <label>SALARY:</label>
-         <input type="number" class="form-control" id="salary">
-     </div>
-     <div class="form-row align-items-center">
-         <div class="col-auto my-1">
-             <label class="mr-sm-2" for="inlineFormCustomSelect">TYPE:</label>
-             <select class="custom-select mr-sm-2" id="type">
-
-                 <option selected></option>
-                 <option value="1">full time</option>
-                 <option value="2">part time</option>
-
-             </select>
-         </div>
-     </div>
-     <div class="form-row">
-         <div class="form-group col-md-6">
-             <label for="inputEmail4">EMAIL:</label>
-             <input type="email" class="form-control" id="email">
-         </div>
-         <div class="form-group">
-             <label>PHONE NUMBER:</label>
-             <input type="tel" class="form-control" id="phone"
-                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-         </div>
- </form>`;
-    $('#formModalBody').html(html); 
-};
-
-// Delete Doctor
-function deleteDoctor(id) {
-};
-
-// Update Patient
-function updatePatient(id) {
-    $('#formModalLabel').text('Update Patient');
-    var html = `       <form>
-    <div class="form-group">
-        <label>NAME:</label>
-        <input type="text" class="form-control" id="name">
-    </div>
-    <div class="form-group">
-        <label>AGE:</label>
-        <input type="number" class="form-control" id="age">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">EMAIL:</label>
-            <input type="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <label>PHONE NUMBER:</label>
-            <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-        </div>
-</form>`;
-    $('#formModalBody').html(html);
-};
-
-// Delete Patient
-function deletePatient(id) {
-};
+		$.ajax({
+			method: "POST",
+			url: 'backend/admin/appointment/loadAppointment.php',
+			success: function (data) {
+				// Table
+				var table = `
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">PATIENT</th>
+							<th scope="col">DOCTOR</th>
+							<th scope="col">ROOM</th>
+							<th scope="col">TREATMENT</th>
+							<th scope="col">FEES</th>
+							<th scope="col">FROM</th>
+							<th scope="col">DAYS</th>
+							<th scope="col">UPDATE</th>
+							<th scope="col">DELETE</th>
+						</tr>
+					</thead>
+					<tbody>`;
+				if (data) {
+					data = JSON.parse(data);
+					data.forEach(element => {
+						table += `
+						<tr>
+							<th scope="row">`+ element.treatment_ID + `</th>
+							<td>`+ element.patient_ID + `</td>
+							<td>`+ element.doctor_ID + `</td>
+							<td>`+ element.room_type + `</td>
+							<td>`+ element.treatment_type + `</td>
+							<td>`+ element.fees + `</td>
+							<td>`+ element.startTime + `</td>
+							<td>`+ element.days + `</td>
+							<td><button type="button" class="btn btn-warning" onclick="updateAppointmentModal(`+ element.treatment_ID + `)"
+								data-toggle="modal" data-target="#formModal">UPDATE</button></td>
+							<td><button type="button" class="btn btn-danger"
+								onclick="deleteAppointment(`+ element.treatment_ID + `)">DELETE</button></td>
+						</tr>`;
+					})
+				}
+				table += `</tbody>
+				</table>`;
+				$('#table').html(table);
+			}
+		});
+	});
+})
