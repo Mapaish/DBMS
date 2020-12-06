@@ -1,12 +1,12 @@
 <?php
-include("../../session.php");
-include("../../db.php");
+include("../session.php");
+include("../db.php");
 
 try {
-	$doctor_ID = $_POST['doctor_ID'];
-	$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `doctor_ID` = :doctor_ID';
+	$email = $_SESSION['email'];
+	$loadDoctorSQL = 'SELECT * FROM `doctor` WHERE `email` = :email';
 	$loadDoctorSTMT = $conn->prepare($loadDoctorSQL);
-	$loadDoctorSTMT->bindParam(':doctor_ID', $doctor_ID);
+	$loadDoctorSTMT->bindParam(':email', $email);
 	$loadDoctorSTMT->execute();
 	$doctor = $loadDoctorSTMT->fetchObject();
 

@@ -1,24 +1,21 @@
 <?php
-include("../../session.php");
-include("../../db.php");
+include("../session.php");
+include("../db.php");
 
 try {
-	$treatment_type = '%%';
-	if(isset($_POST['treatment_type'])) {
-		$treatment_type = '%'.$_POST['treatment_type'].'%';
-	}
-	$loadAppointmentSQL = 'SELECT `assigned_to`.*, `patient`.`name` AS `patientName`, `doctor`.`Name` AS `doctorName`
-		FROM `assigned_to`
-		INNER JOIN `patient` ON `assigned_to`.`patient_ID` = `patient`.`patient_ID`
+	$email = $_SESSION['email'];
+	
+	$loadAppointmentSQL = 'SELECT `assigned_to`.*, `patient`.`name` FROM `assigned_to`
 		INNER JOIN `doctor` ON `assigned_to`.`doctor_ID` = `doctor`.`doctor_ID`
-		WHERE LOWER(`treatment_type`) LIKE LOWER(:treatment_type)';
+		INNER JOIN `patient` ON `assigned_to`.`patient_ID` = `patient`.`patient_ID`
+		WHERE `doctor`.`email` = :email';
 	$loadAppointmentSTMT = $conn->prepare($loadAppointmentSQL);
-	$loadAppointmentSTMT->bindParam(':treatment_type', $treatment_type);
+	$loadAppointmentSTMT->bindParam(':email', $email);
 	$loadAppointmentSTMT->execute();
 	while ($row = $loadAppointmentSTMT->fetchObject()) {
 		$patient["treatment_ID"] = $row->treatment_ID;
-		$patient["patientName"] = $row->patientName;
-		$patient["doctorName"] = $row->doctorName;
+		$patient["patient_name"] = $row->name;
+		$patient["doctor_ID"] = $row->doctor_ID;
 		$patient["room_type"] = $row->room_type;
 		$patient["treatment_type"] = $row->treatment_type;
 		$patient["fees"] = $row->fees;

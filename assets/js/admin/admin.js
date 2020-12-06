@@ -99,22 +99,40 @@ $(function () {
 		// Jumbotron
 		var jumbotron = `
 		<h1>Appointment</h1>
-        <div class="row">
-			<label>Treatment</label>
-            <input type="text" class="form-control col-sm-4" id="treatment_type" placeholder="Treatment Type">
-            <button type="button" class="btn btn-success float-right" id="search_treatment">Search</button>
-        </div>
+		<div class="input-group">
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label col-form-label-lg">Treatment</label>
+		</div>
+		<select class="selectpicker w-100 col-sm-4 my-2" id="treatment_type" data-live-search="true">
+			<option value="" selected>All</option>
+		</select>
+		</div>
         <button type="button" class="btn btn-success float-right" id="addAppointmentModal" data-toggle="modal"
             data-target="#formModal">ADD</button>`;
 		$('#jumbotron').html(jumbotron);
+		$(".selectpicker").selectpicker("refresh");
+		// Treatment Select Menu
+		$.ajax({
+			method: "POST",
+			url: 'backend/admin/loadTreatment.php',
+			success: function (data) {
+				if (data) {
+					data = JSON.parse(data);
+					data.forEach(element => {
+						$('#treatment_type').append(new Option(element.treatment_type, element.treatment_type));
+					});
+				}
+				$(".selectpicker").selectpicker("refresh");
+			}
+		});
 
 		showAppoinment();
 	});
 	// Search by Treatment Type
-	$(document).on('click', '#search_treatment', function () {
+	$(document).on('change', '#treatment_type', function () {
 		showAppoinment();
 	});
-})
+});
 
 function showDoctors() {
 	var minSal = $('#minSal').val();
@@ -209,8 +227,8 @@ function showAppoinment() {
 					table += `
 					<tr>
 						<th scope="row">`+ element.treatment_ID + `</th>
-						<td>`+ element.patient_ID + `</td>
-						<td>`+ element.doctor_ID + `</td>
+						<td>`+ element.patientName + `</td>
+						<td>`+ element.doctorName + `</td>
 						<td>`+ element.room_type + `</td>
 						<td>`+ element.treatment_type + `</td>
 						<td>`+ element.fees + `</td>

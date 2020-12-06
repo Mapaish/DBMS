@@ -9,7 +9,7 @@ include('backend/session.php');
     <title>Mapaish Hospital</title>
 	<link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-	<link rel="stylesheet" href="assets/css/doctor.css">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
@@ -31,6 +31,9 @@ include('backend/session.php');
 				<li class="nav-item ">
 					<a class="nav-link" id="appointmentTab">Appointment</a>
 				</li>
+				<li class="nav-item ">
+					<a class="nav-link" href="backend/login/logout.php">Log Out</a>
+				</li>
 			</ul>
 		</div>
 		<?php
@@ -41,6 +44,9 @@ include('backend/session.php');
 			<ul class="navbar-nav bd-navbar-nav flex-row">
 				<li class="nav-item ">
 					<a class="nav-link" id="doctorAppointmentTab">Appointment</a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link" href="backend/login/logout.php">Log Out</a>
 				</li>
 			</ul>
 		</div>
@@ -79,8 +85,10 @@ include('backend/session.php');
 	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="assets/admin/admin.js"></script>
-	<script src="assets/admin/modal.js"></script>
+	<script src="assets/js/admin/admin.js"></script>
+	<script src="assets/js/admin/modal.js"></script>
+	<script src="assets/js/doctor/doctor.js"></script>
+	<script src="assets/js/doctor/modal.js"></script>
 
 </body>
 
