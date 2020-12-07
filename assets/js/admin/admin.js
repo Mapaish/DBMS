@@ -5,6 +5,8 @@ $(function () {
 
 	// Doctor
 	$('#doctorTab').on('click', function () {
+		$(this).parent().siblings().children().removeClass('active');
+		$(this).addClass('active');
 		// Jumbotron
 		var jumbotron = `
 		<h1>Doctor</h1>
@@ -38,6 +40,8 @@ $(function () {
 
 	// Patient
 	$('#patientTab').on('click', function () {
+		$(this).parent().siblings().children().removeClass('active');
+		$(this).addClass('active');
 		// Jumbotron
 		var jumbotron = `
 		<h1>Patient</h1>
@@ -96,6 +100,8 @@ $(function () {
 
 	// Appointment
 	$('#appointmentTab').on('click', function () {
+		$(this).parent().siblings().children().removeClass('active');
+		$(this).addClass('active');
 		// Jumbotron
 		var jumbotron = `
 		<h1>Appointment</h1>
